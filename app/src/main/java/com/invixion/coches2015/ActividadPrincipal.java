@@ -161,7 +161,7 @@ public class ActividadPrincipal extends AppCompatActivity implements AdapterView
                     comments = parser.readJsonStream(in);
 
                     System.out.println("salio del parser");
-                    System.out.println("stream "+parser.readJsonStream(in));
+                    System.out.println("stream "+comments.toString());
 
 
                 }

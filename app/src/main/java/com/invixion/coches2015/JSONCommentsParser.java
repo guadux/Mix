@@ -24,7 +24,7 @@ public class JSONCommentsParser {
             return readCommentsArray(reader);
         }
         finally{
-            reader.close();
+//            reader.close();
         }
     }
 
@@ -34,6 +34,8 @@ public class JSONCommentsParser {
     public List<String> readCommentsArray(JsonReader reader) throws IOException {
         List<String> comments = new ArrayList<>();
 
+        System.out.println("antes de la excepcion");
+        System.out.println(reader.equals(null));
         // Se dirige al corchete de apertura del arreglo
         reader.beginArray();
         while (reader.hasNext()) {
