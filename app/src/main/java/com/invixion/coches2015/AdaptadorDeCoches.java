@@ -61,8 +61,9 @@ public class AdaptadorDeCoches extends BaseAdapter {
         TextView nombreCoche = (TextView) view.findViewById(R.id.nombre_coche);
 
         final Coche item = getItem(position);
+
         Glide.with(imagenCoche.getContext())
-                .load(item.getIdDrawable())
+                .load(item.getImg())
                 .into(imagenCoche);
 
         nombreCoche.setText(item.getNombre());

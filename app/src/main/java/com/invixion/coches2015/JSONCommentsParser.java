@@ -34,12 +34,9 @@ public class JSONCommentsParser {
     public List<String> readCommentsArray(JsonReader reader) throws IOException {
         List<String> comments = new ArrayList<>();
 
-        System.out.println("antes de la excepcion");
-        System.out.println(reader.equals(null));
         // Se dirige al corchete de apertura del arreglo
         reader.beginArray();
         while (reader.hasNext()) {
-            System.out.println("leo mensaje "+readMessage(reader));
             comments.add(readMessage(reader));
         }
 
@@ -64,9 +61,10 @@ public class JSONCommentsParser {
             // Se obtiene el nombre del atributo
             String name = reader.nextName();
 
-            System.out.println(name);
+            System.out.println("nombre: "+name);
 
             if (name.equals("nombre")) {
+                Coche.appendCoche(new Coche("nuevo","http://chihuahuanoticias.com/wp-content/uploads/2015/04/toyota_supra_paul_walker.jpg"));
                 body= reader.nextString();
             }else {
                 reader.skipValue();

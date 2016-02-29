@@ -34,7 +34,7 @@ public class ActividadDetalle extends AppCompatActivity {
 
     private void cargarImagenExtendida() {
         Glide.with(imagenExtendida.getContext())
-                .load(itemDetallado.getIdDrawable())
+                .load(itemDetallado.getImg())
                 .into(imagenExtendida);
     }
 

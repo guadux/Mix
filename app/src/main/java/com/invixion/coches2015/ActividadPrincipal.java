@@ -47,16 +47,21 @@ public class ActividadPrincipal extends AppCompatActivity implements AdapterView
 
         usarToolbar();
 
-        gridView = (GridView) findViewById(R.id.grid);
-        adaptador = new AdaptadorDeCoches(this);
-
-        gridView.setAdapter(adaptador);
-        gridView.setOnItemClickListener(this);
 
          /*
         Comprobar la disponibilidad de la Red
          */
+        System.out.println("antes del try");
         try {
+
+            System.out.println("en el try sin entrar al catch y por llamar al grid");
+
+
+            gridView = (GridView) findViewById(R.id.grid);
+            adaptador = new AdaptadorDeCoches(this);
+
+            System.out.println("contador: "+adaptador.getCount());
+
             ConnectivityManager connMgr = (ConnectivityManager)
                     getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -66,14 +71,19 @@ public class ActividadPrincipal extends AppCompatActivity implements AdapterView
                 new GetCommentsTask().
                         execute(
                                 new URL("http://invixion.com/listado_medicos.php"));
+                System.out.println("contador despues del listado: " + adaptador.getCount());
             } else {
                 Toast.makeText(this, "Error de conexion", Toast.LENGTH_LONG).show();
             }
+
+            gridView.setAdapter(adaptador);
+            gridView.setOnItemClickListener(this);
 
         } catch (MalformedURLException e) {
 
             e.printStackTrace();
         }
+
 
     }
 
@@ -148,8 +158,6 @@ public class ActividadPrincipal extends AppCompatActivity implements AdapterView
                 }
                 else{
 
-                    System.out.println("disponible");
-
                     /*
                     Parsear el flujo con formato JSON a una lista de Strings
                     que permitan crean un adaptador
@@ -160,7 +168,6 @@ public class ActividadPrincipal extends AppCompatActivity implements AdapterView
 
                     comments = parser.readJsonStream(in);
 
-                    System.out.println("salio del parser");
                     System.out.println("stream "+comments.toString());
 
 
